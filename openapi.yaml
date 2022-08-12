@@ -113,3 +113,38 @@ paths:
                                     type: string
                                 last_name:
                                     type: string
+    employee/{id}/leave_applications:
+        post:
+            tags:
+                - Test Endpoints
+            summary: Create a leave application
+            operationId: handlers#PostLeaveApplication
+            parameters:
+                - name: id
+                  in: path
+                  schema:
+                      type: integer
+                  description: the employee id
+                  required: true
+            responses:
+                '201':
+                    description: Successfully created application
+                '400':
+                    description: 'Bad request'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                leave_start_date:
+                                    type: date
+                                leave_end_date:
+                                    type: date
