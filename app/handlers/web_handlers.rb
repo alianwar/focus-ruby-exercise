@@ -7,8 +7,12 @@ module Web
     end
 
     class GetEmployee
-      def call(_params, res)
-        # TODO: Implement me
+      def call(params, res)
+        employee = Employee.find params[:id]
+        employee.response_body
+      rescue ActiveRecord::RecordNotFound => e
+        res.status = "404"
+        res.write e.message
       end
     end
 
